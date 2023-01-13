@@ -25,12 +25,12 @@ const productSchema = mongoose.Schema({
     productDiscount:{
         type:String,
     },
-    // productOffer:[],
-    // productComments:[],
+    productOffer:[],
+    productComments:[],
     productSold:{
         type:Number,
     },
-    Date:{
+    date:{
         type:String,
     },
 })

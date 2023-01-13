@@ -4,7 +4,7 @@ import WebService from "../Web/WebService";
 export const fetchBrand = createAsyncThunk('brand/fetchBrand',async ()=>{
     let res= await WebService.getApi(WebApis.LOAD_BRANDS);
     if(res.data.status)
-        return res.data.data;
+        return res.data.result;
 })
 const brandSlice = createSlice({
     name:'brand',
