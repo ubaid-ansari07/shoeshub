@@ -1,6 +1,11 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function ProductDetails() {
+    let location = useLocation();
+    let {product} = location.state;
+
+    console.log(product);
   return (
     <div className="container-fluid py-5">
     <div className="row px-xl-5">
@@ -8,16 +13,16 @@ export default function ProductDetails() {
             <div id="product-carousel" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner border">
                     <div className="carousel-item active">
-                        <img className="w-100 h-100" src="img/product-1.jpg" alt="Image"/>
+                        <img className="w-100 h-100" src={'images/'+product.productImages[0]} alt="Image"/>
                     </div>
                     <div className="carousel-item">
-                        <img className="w-100 h-100" src="img/product-2.jpg" alt="Image"/>
+                        <img className="w-100 h-100" src={'images/'+product.productImages[0]} alt="Image"/>
                     </div>
                     <div className="carousel-item">
-                        <img className="w-100 h-100" src="img/product-3.jpg" alt="Image"/>
+                        <img className="w-100 h-100" src={'images/'+product.productImages[0]} alt="Image"/>
                     </div>
                     <div className="carousel-item">
-                        <img className="w-100 h-100" src="img/product-4.jpg" alt="Image"/>
+                        <img className="w-100 h-100" src={'images/'+product.productImages[0]} alt="Image"/>
                     </div>
                 </div>
                 <a className="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -30,8 +35,8 @@ export default function ProductDetails() {
         </div>
 
         <div className="col-lg-7 pb-5">
-            <h3 className="font-weight-semi-bold">Colorful Stylish Shirt</h3>
-            <div className="d-flex mb-3">
+            <h3 className="font-weight-semi-bold">{product.productName}</h3>
+            {/* <div className="d-flex mb-3">
                 <div className="text-primary mr-2">
                     <small className="fas fa-star"></small>
                     <small className="fas fa-star"></small>
@@ -40,67 +45,68 @@ export default function ProductDetails() {
                     <small className="far fa-star"></small>
                 </div>
                 <small className="pt-1">(50 Reviews)</small>
-            </div>
-            <h3 className="font-weight-semi-bold mb-4">$150.00</h3>
-            <p className="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
+            </div> */}
+            <h3 className="font-weight-semi-bold mb-4">${product.productPrice}</h3>
+            <p className="mb-4">{product.productDescription}</p>
             <div className="d-flex mb-3">
                 <p className="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                 <form>
-                    <div className="custom-control custom-radio custom-control-inline">
+                    {product.productSize.map((size,index)=> <div key={index} className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="size-1" name="size"/>
-                        <label className="custom-control-label" for="size-1">XS</label>
-                    </div>
-                    <div className="custom-control custom-radio custom-control-inline">
+                        <label className="custom-control-label" htmlFor="size-1">{size}</label>
+                    </div>)}
+                   
+                    {/* <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="size-2" name="size"/>
-                        <label className="custom-control-label" for="size-2">S</label>
+                        <label className="custom-control-label" htmlFor="size-2">S</label>
                     </div>
                     <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="size-3" name="size"/>
-                        <label className="custom-control-label" for="size-3">M</label>
+                        <label className="custom-control-label" htmlFor="size-3">M</label>
                     </div>
                     <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="size-4" name="size"/>
-                        <label className="custom-control-label" for="size-4">L</label>
+                        <label className="custom-control-label" htmlFor="size-4">L</label>
                     </div>
                     <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="size-5" name="size"/>
-                        <label className="custom-control-label" for="size-5">XL</label>
-                    </div>
+                        <label className="custom-control-label" htmlFor="size-5">XL</label>
+                    </div> */}
                 </form>
             </div>
             <div className="d-flex mb-4">
                 <p className="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
                 <form>
-                    <div className="custom-control custom-radio custom-control-inline">
-                        <input type="radio" className="custom-control-input" id="color-1" name="color"/>
-                        <label className="custom-control-label" for="color-1">Black</label>
+                    <div className="">
+                        {/* <input type="radio" className="custom-control-input" id="color-1" name="color"/> */}
+                        <label className="">{product.productColor}</label>
                     </div>
-                    <div className="custom-control custom-radio custom-control-inline">
+                    {/* <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="color-2" name="color"/>
-                        <label className="custom-control-label" for="color-2">White</label>
+                        <label className="custom-control-label" htmlFor="color-2">White</label>
                     </div>
                     <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="color-3" name="color"/>
-                        <label className="custom-control-label" for="color-3">Red</label>
+                        <label className="custom-control-label" htmlFor="color-3">Red</label>
                     </div>
                     <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="color-4" name="color"/>
-                        <label className="custom-control-label" for="color-4">Blue</label>
+                        <label className="custom-control-label" htmlFor="color-4">Blue</label>
                     </div>
                     <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" className="custom-control-input" id="color-5" name="color"/>
-                        <label className="custom-control-label" for="color-5">Green</label>
-                    </div>
+                        <label className="custom-control-label" htmlFor="color-5">Green</label>
+                    </div> */}
                 </form>
             </div>
             <div className="d-flex align-items-center mb-4 pt-2">
-                <div className="input-group quantity mr-3" style="width: 130px;">
+                <div className="input-group quantity mr-3" style={{width:'130px'}}>
                     <div className="input-group-btn">
                         <button className="btn btn-primary btn-minus" >
                         <i className="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" className="form-control bg-secondary text-center" value="1"/>
+                    <input type="text" className="form-control bg-secondary text-center" defaultValue="1"/>
                     <div className="input-group-btn">
                         <button className="btn btn-primary btn-plus">
                             <i className="fa fa-plus"></i>
@@ -132,16 +138,14 @@ export default function ProductDetails() {
         <div className="col">
             <div className="nav nav-tabs justify-content-center border-secondary mb-4">
                 <a className="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                <a className="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Information</a>
-                <a className="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                <a className="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews ({product.productComments.length})</a>
             </div>
             <div className="tab-content">
                 <div className="tab-pane fade show active" id="tab-pane-1">
                     <h4 className="mb-3">Product Description</h4>
-                    <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                    <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                    <p>{product.productDescription}</p>
                 </div>
-                <div className="tab-pane fade" id="tab-pane-2">
+                {/* <div className="tab-pane fade" id="tab-pane-2">
                     <h4 className="mb-3">Additional Information</h4>
                     <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
                     <div className="row">
@@ -178,13 +182,13 @@ export default function ProductDetails() {
                               </ul> 
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="tab-pane fade" id="tab-pane-3">
                     <div className="row">
                         <div className="col-md-6">
-                            <h4 className="mb-4">1 review for "Colorful Stylish Shirt"</h4>
+                            <h4 className="mb-4">Reviews for "{product.productName}"</h4>
                             <div className="media mb-4">
-                                <img src="img/user.jpg" alt="Image" className="img-fluid mr-3 mt-1" style="width: 45px;"/>
+                                <img src="img/user.jpg" alt="Image" className="img-fluid mr-3 mt-1" style={{width:'45px'}}/>
                                 <div className="media-body">
                                     <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
                                     <div className="text-primary mb-2">
@@ -213,19 +217,19 @@ export default function ProductDetails() {
                             </div>
                             <form>
                                 <div className="form-group">
-                                    <label for="message">Your Review *</label>
+                                    <label htmlFor="message">Your Review *</label>
                                     <textarea id="message" cols="30" rows="5" className="form-control"></textarea>
                                 </div>
                                 <div className="form-group">
-                                    <label for="name">Your Name *</label>
+                                    <label htmlFor="name">Your Name *</label>
                                     <input type="text" className="form-control" id="name"/>
                                 </div>
                                 <div className="form-group">
-                                    <label for="email">Your Email *</label>
+                                    <label htmlFor="email">Your Email *</label>
                                     <input type="email" className="form-control" id="email"/>
                                 </div>
                                 <div className="form-group mb-0">
-                                    <input type="submit" value="Leave Your Review" className="btn btn-primary px-3"/>
+                                    <input type="submit" defaultValue="Leave Your Review" className="btn btn-primary px-3"/>
                                 </div>
                             </form>
                         </div>

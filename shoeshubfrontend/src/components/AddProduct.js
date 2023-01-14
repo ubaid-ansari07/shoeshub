@@ -10,14 +10,15 @@ export default function AddProduct() {
     const [qty, setQty] = useState(1);
     const [desc, setDesc] = useState("");
     const [brandId,setBrandId] = useState();
-    const [color,setColor] = useState();
-    const [discount,setDiscount] = useState();
+    const [color,setColor] = useState("");
+    const [discount,setDiscount] = useState("");
     const [sizes,setSizes] = useState([]);
     const [img,setImg] = useState([]);
     const {brandList} = useSelector(state=>state.brand.value)
     const save = async ()=>{
         let formData = new FormData();
-        formData.append('img',img);
+        for(let i=0;i<img.length;i++)
+            formData.append('img',img[i])
         formData.set('brandId',brandId)
         formData.set('productName',name);
         formData.set('productPrice',price);
@@ -25,22 +26,21 @@ export default function AddProduct() {
         formData.set('productDescription',desc);
         formData.set("productColor",color);
         formData.set("productDiscount",discount);
-        formData.set("productSize",[...sizes]);
-        formData.set("productOffer",[]);
-        formData.set("productComments",[]);
-        formData.set("productSold",[]);
+        sizes.forEach(size=>formData.append("productSize[]",size*1))
+        formData.set("productOffer",null);
+        formData.set("productComments",null);
+        formData.set("productSold",0);
         formData.set("date",new Date());
-
-        console.log(formData);
         try {
-            // await axios.post("http://localhost:8000/product/add",{newProduct:formData})
-            await WebService.postApi(WebApis.ADD_PRODUCTS,formData);
+           let res = await WebService.postApi(WebApis.ADD_PRODUCTS,formData);
+           if(res.data.status)
+            window.alert(res.data.mess);
         } catch (error) {
             console.log(error);
         }
     }
     const images = (e)=>{
-        setImg([...img,e.target.files[0],e.target.files[1],e.target.files[2]]);
+        setImg(e.target.files)
     }
     const size = (e)=>{
         let {value,checked} = e.target;

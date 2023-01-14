@@ -20,7 +20,7 @@ export default function Navbar() {
                             <Link to="products" className="nav-item nav-link">Products</Link>
                             <Link to="about" className="nav-item nav-link">About Us</Link>
                             <Link to="contact" className="nav-item nav-link">Contact</Link>
-                            <Link to="admin" className="nav-item nav-link">Admin</Link>
+                            <Link to="admin/product/add" className="nav-item nav-link">Admin</Link>
                         </div>
                         <div className="navbar-nav ml-auto py-0">
                             <a href="" className="nav-item nav-link">Login</a>

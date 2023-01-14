@@ -9,6 +9,7 @@ import { fetchBrand } from './components/reduxconfig/brandSlice'
 import { fetchProduct } from './components/reduxconfig/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import AddProduct from './components/AddProduct'
+import ProductDetails from './components/ProductDetails'
 export default function App() {
   let dispatch = useDispatch();
   useEffect(()=>{
@@ -17,16 +18,17 @@ export default function App() {
   },[])
   return (
     <>
-    <AddProduct/>
-      {/* <BrowserRouter>
+      <BrowserRouter>
           <Topbar/>
           <Navbar/>
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='products' element={<Products/>}/>
+            <Route path='admin/product/add' element={<AddProduct/>}></Route>
+            <Route path='product/details' element={<ProductDetails/>}></Route>
           </Routes>
         <Footer/>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </>
   )
 }

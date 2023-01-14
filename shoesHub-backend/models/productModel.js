@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
     productName:{
         type:String,
     },
-    producPrice:{
+    productPrice:{
         type:Number,
     },
     productQty:{
